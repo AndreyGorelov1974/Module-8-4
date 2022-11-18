@@ -45,7 +45,7 @@ int main() {
     float fileSize;
     std::cin >> fileSize;
     while (fileSize <= 0) {
-        std::cout << "Рзамер должен быть больше или равен 0 МБ. Введите снова: ";
+        std::cout << "Рзамер должен быть больше 0 МБ. Введите снова: ";
         std::cin >> fileSize;
     }
 
@@ -53,7 +53,7 @@ int main() {
     float connectSpeed;
     std::cin >> connectSpeed;
     while (connectSpeed <= 0) {
-        std::cout << "Скорость соединения может быть больше или равна 0 МБ/с. Введите снова: ";
+        std::cout << "Скорость соединения может быть больше 0 МБ/с. Введите снова: ";
         std::cin >> connectSpeed;
     }
     
