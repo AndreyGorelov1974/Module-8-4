@@ -62,12 +62,12 @@ int main() {
     int elapsedTime = 0;
 
 
-    while ((fileSize - downloadSize) <= connectSpeed) {
+    while ((fileSize - downloadSize) > connectSpeed) {
         elapsedTime++;
         downloadSize += connectSpeed;
         downloadPercent = (int)((downloadSize / fileSize) * 100);
-        std::cout << "Прошло " << elapsedTime << " сек. Скачано " << downloadSize << " из " << fileSize << " МБ(" << downloadPercent << " %)." << std::endl;
+        std::cout << "Прошло " << elapsedTime << " сек. Скачано " << downloadSize << " из " << fileSize << " МБ(" << downloadPercent << "%)." << std::endl;
     }
-    std::cout << "Прошло " << elapsedTime++ << " сек. Скачано " << fileSize << " из " << fileSize << " МБ(100%)." << std::endl;
+    std::cout << "Прошло " << ++elapsedTime << " сек. Скачано " << fileSize << " из " << fileSize << " МБ(100%)." << std::endl;
 
 }
