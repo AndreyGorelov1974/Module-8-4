@@ -41,42 +41,33 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    //минимальные размеры кубика
-    float minX = 5.0f, minY = 5.0f, minZ = 5.0f;
-
-    std::cout << "Введите размеры бруска (в сатиметрах)" << std::endl;
-    std::cout << "X: ";
-    float xWorkPiece;
-    std::cin >> xWorkPiece;
-    while (xWorkPiece < minX) {
-        std::cout << "Рзамер должен быть больше или равен " << minX << " см. Введите снова: ";
-        std::cin >> xWorkPiece;
+    std::cout << "Укажите размер файла для скачивания: ";
+    float fileSize;
+    std::cin >> fileSize;
+    while (fileSize <= 0) {
+        std::cout << "Рзамер должен быть больше или равен 0 МБ. Введите снова: ";
+        std::cin >> fileSize;
     }
 
-    std::cout << "Y: ";
-    float yWorkPiece;
-    std::cin >> yWorkPiece;
-    while (yWorkPiece < minY) {
-        std::cout << "Рзамер должен быть больше или равен " << minY << " см. Введите снова: ";
-        std::cin >> yWorkPiece;
+    std::cout << "Какова скорость вашего соединения? ";
+    float connectSpeed;
+    std::cin >> connectSpeed;
+    while (connectSpeed <= 0) {
+        std::cout << "Скорость соединения может быть больше или равна 0 МБ/с. Введите снова: ";
+        std::cin >> connectSpeed;
     }
+    
+    float downloadSize = 0.0f;
+    int downloadPercent = 0;
+    int elapsedTime = 0;
 
-    std::cout << "Z: ";
-    float zWorkPiece;
-    std::cin >> zWorkPiece;
-    while (zWorkPiece < minZ) {
-        std::cout << "Рзамер должен быть больше или равен " << minZ << " см. Введите снова: ";
-        std::cin >> zWorkPiece;
+
+    while ((fileSize - downloadSize) <= connectSpeed) {
+        elapsedTime++;
+        downloadSize += connectSpeed;
+        downloadPercent = (int)((downloadSize / fileSize) * 100);
+        std::cout << "Прошло " << elapsedTime << " сек. Скачано " << downloadSize << " из " << fileSize << " МБ(" << downloadPercent << " %)." << std::endl;
     }
-    // подсчитываем количество кубиков которые можно сделать из заготовки
-    int quantityCube = ((int)xWorkPiece / 5) * ((int)yWorkPiece / 5) * ((int)zWorkPiece / 5);
+    std::cout << "Прошло " << elapsedTime++ << " сек. Скачано " << fileSize << " из " << fileSize << " МБ(100%)." << std::endl;
 
-    // количество кубиков в одной стороне набора
-    int edgeCubeSet = std::cbrt(quantityCube);
-
-    // количество кубиков в наборе
-    int quantityCubeSet = std::pow(edgeCubeSet, 3);
-
-    std::cout << "Количество кубиков которые можно изготовить из этого бруска - " << quantityCube << " шт." << std::endl;
-    std::cout << "количество наборов по " << quantityCubeSet << " кубиков, которое можно составить из них будет - " << quantityCube / quantityCubeSet << " шт." << std::endl;
 }
